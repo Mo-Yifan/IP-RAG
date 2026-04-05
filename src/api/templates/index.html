@@ -1,0 +1,77 @@
+<!-- src/api/templates/index.html -->
+{% extends "base.html" %}
+
+{% block title %}IP-RAG 智能专利检索{% endblock %}
+
+{% block content %}
+<div class="bg-white rounded-2xl shadow-xl p-8 mb-8 border border-gray-200">
+    <div class="mb-6">
+        <label for="question" class="block text-gray-700 font-bold text-xl mb-3">
+            🤖 请输入您的技术问题 (建议英文/技术术语):
+        </label>
+        <textarea 
+            id="question" 
+            rows="4" 
+            class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-cyan-200 focus:border-cyan-400 transition-all text-lg text-gray-700 resize-none"
+            placeholder="例如：Find patents related to lithium battery thermal runaway prevention.&#10;Or: 一种基于区块链的数据存证方法。"></textarea>
+        <p class="text-sm text-gray-500 mt-2 text-right">Tip: 使用具体的技术名词（如 Lithium Battery, AI, 5G）检索效果更佳。</p>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <!-- 筛选条件 -->
+        <label class="flex items-center cursor-pointer bg-gray-100 px-4 py-2 rounded-lg hover:bg-gray-200 transition">
+            <input type="checkbox" id="active_only" class="w-5 h-5 text-cyan-600 rounded focus:ring-cyan-500">
+            <span class="ml-3 text-gray-700 font-medium">仅检索有效专利</span>
+        </label>
+
+        <!-- 提交按钮 -->
+        <button 
+            id="submit-btn" 
+            class="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-extrabold py-4 px-10 rounded-xl shadow-lg transition duration-200 transform active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed w-full sm:w-auto"
+        >
+            <span id="btn-text" class="text-lg">🔍 开始检索</span>
+            <!-- Loading 图标 -->
+            <svg id="btn-loading" class="animate-spin hidden ml-3" style="width: 24px; height: 24px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<!-- 结果显示区域 -->
+<div id="result-area" class="hidden space-y-8">
+    <!-- 摘要/回答卡片 -->
+    <div class="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-cyan-500">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+            <span class="mr-3">📝</span> 语义分析摘要
+        </h2>
+        <div id="answer" class="text-gray-700 leading-relaxed text-xl whitespace-pre-line"></div>
+    </div>
+
+    <!-- 专利引用列表 -->
+    <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            <span class="mr-3">📜</span> 检索到的相关专利 (Top-K)
+        </h2>
+        <div id="patent-list" class="space-y-6"></div>
+    </div>
+</div>
+
+<!-- 错误提示 -->
+<!-- src/api/templates/index.html -->
+<div id="error-area" class="hidden">
+    <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-6 rounded-lg shadow-md" role="alert">
+        <!-- 修改这里：默认内容为空，或者只放一个图标 -->
+        <p class="font-bold text-xl">
+            ❌ <span id="error-message"></span>
+        </p>
+        <p id="error-details" class="mt-2 text-lg"></p>
+    </div>
+</div>
+{% endblock %}
+
+{# ⚠️ 关键 Block：加载外部 JS #}
+{% block extra_js %}
+<script src="/static/js/main.js"></script>
+{% endblock %}

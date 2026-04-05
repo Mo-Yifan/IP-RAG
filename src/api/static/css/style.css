@@ -1,0 +1,263 @@
+/* src/api/static/css/style.css */
+
+:root {
+    /* 🔴 主色调改为科技青/蓝 */
+    --primary: #06b6d4;     /* 青色 (Cyan 500) */
+    --primary-dark: #0891b2; /* 深青色 (Hover 状态) */
+    --primary-light: #cffafe; /* 浅青色 (背景) */
+    
+    /* 🎨 中性色系 */
+    --bg: #f8fafc;          /* 淡灰蓝背景 */
+    --card-bg: #ffffff;     /* 卡片纯白 */
+    --text: #0f172a;        /* 深灰文字 */
+    --text-light: #64748b;  /* 浅灰文字 */
+    --border: #cbd5e1;      /* 边框颜色 */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* 卡片阴影 */
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1); /* 大卡片阴影 */
+    --radius: 16px;         /* 更大的圆角 */
+    --radius-lg: 24px;      /* 特殊卡片圆角 */
+    
+    /* 🖋️ 字体 */
+    --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px; /* 加宽容器以适应双列/大卡片 */
+    margin: 0 auto;
+}
+
+/* =================== */
+/* 🔝 头部样式优化 */
+/* =================== */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+}
+
+h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--primary), #2563eb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.05em;
+}
+
+.subtitle {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 500;
+}
+
+/* =================== */
+/* 🃏 卡片通用样式 */
+/* =================== */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    border-color: rgba(203, 213, 225, 0.3);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* =================== */
+/* 📝 表单控件 */
+/* =================== */
+textarea,
+button {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 500;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+    margin-bottom: 16px;
+    transition: all 0.2s;
+    border-color: #94a3b8;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+}
+
+/* =================== */
+/* 🎯 按钮样式 (增强版) */
+/* =================== */
+button {
+    background: linear-gradient(to right, var(--primary), #2563eb);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    letter-spacing: 0.025em;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+    background: linear-gradient(to right, #0891b2, #1d4ed8);
+}
+
+button:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* =================== */
+/* 💬 答案区域 */
+/* =================== */
+.answer {
+    white-space: pre-wrap;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #1e293b;
+    padding: 0.5rem 0;
+}
+
+/* =================== */
+/* 📜 专利引用卡片 (新增样式) */
+/* =================== */
+.patent-card {
+    border-left: 4px solid var(--primary-light);
+    background: #f1f5f9;
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-top: 1rem;
+    transition: all 0.2s;
+}
+
+.patent-card:hover {
+    background: #e2e8f0;
+    border-left-color: var(--primary);
+}
+
+.patent-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.patent-id {
+    font-family: var(--font-mono);
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.9em;
+}
+
+.patent-score {
+    color: #64748b;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.patent-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0284c7;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.patent-snippet {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px dashed #cbd5e1;
+}
+
+/* =================== */
+/* 🚨 错误提示 */
+/* =================== */
+.error {
+    color: #dc2626;
+    background: #fee2e2;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-top: 1rem;
+    border-left: 4px solid #ef4444;
+    font-weight: 500;
+}
+
+/* =================== */
+/* 📱 响应式设计 */
+/* =================== */
+@media (max-width: 768px) {
+    body {
+        padding: 12px;
+    }
+    
+    .container {
+        padding: 0 8px;
+    }
+    
+    .card {
+        padding: 1.25rem;
+        border-radius: var(--radius);
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .patent-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .patent-id, .patent-score {
+        margin: 0;
+    }
+}

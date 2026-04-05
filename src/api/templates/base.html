@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="基于 RAG 技术的智能专利检索系统，支持全量专利数据语义搜索。" />
+    <title>{% block title %}IP-RAG 专利检索系统{% endblock %}</title>
+    <!-- Tailwind CSS 或外部样式 -->
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <!-- Favicon (可选) -->
+    <!-- <link rel="icon" type="image/x-icon" href="/static/favicon.ico"> -->
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-6 max-w-6xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 mb-2">
+                📄 IP-RAG 专利检索系统
+            </h1>
+            <p class="text-xl text-gray-600">
+                基于深度嵌入模型的语义搜索 · 挖掘 117万+ 专利数据价值
+            </p>
+        </header>
+        
+        <!-- 子模板内容区域 -->
+        {% block content %}{% endblock %}
+        
+        <footer class="mt-12 text-center text-gray-400 text-sm">
+            <p>
+                © 2026 IP-RAG System | 数据规模: 838,961 个 Chunk | 
+                <a href="https://github.com/your-repo" target="_blank" class="text-cyan-500 hover:underline">GitHub</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- ⚠️ 关键修改：这里不再直接引入 main.js -->
+    <!-- 所有的 JS 都由子模板通过 extra_js block 注入 -->
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
